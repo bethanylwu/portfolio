@@ -4,6 +4,7 @@
     box-sizing: border-box;
     background-color: rgb(245, 241, 241);
     font-family: "Suisse", "Helvetica", "Arial", sans-serif;
+    font-size: 14px;
 }
 
 a {
@@ -21,6 +22,7 @@ a {
     height: 40px;
     padding-left: 10px;
     align-content: center;
+    font-size: 18px;
 }
 
 .list-container {
