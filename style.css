@@ -59,8 +59,13 @@ a {
     float: left;
 }
 
-.list {
-    height: 0 auto;
+.list-item:hover {
+    color: rgb(251, 208, 12);
+}
+
+.list-item:active {
+    font-weight: bold;
+    color: rgb(110, 108, 108);
 }
 
 .year-show {
@@ -78,13 +83,7 @@ a {
 .project {
     float: left;
     margin: 5px;
-}
-
-.category {
-    float: right;
-    text-align: right;
-    margin: 5px;
-    padding-right: 20px;
+    overflow: hidden;
 }
 
 .content-container {
