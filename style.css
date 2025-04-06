@@ -63,7 +63,7 @@ a {
     color: rgb(251, 208, 12);
 }
 
-.list-item:active {
+.list-item.selected {
     font-weight: bold;
     color: rgb(110, 108, 108);
 }
