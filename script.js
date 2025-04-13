@@ -67,14 +67,14 @@ document.querySelectorAll('.list-item').forEach(item => {
 
         // Remove 'selected' class from all list items and hide all expandable text
         document.querySelectorAll('.list-item').forEach(el => el.classList.remove('selected'));
-        document.querySelectorAll('.expandable-text').forEach(text => text.style.display = 'none');
+        document.querySelectorAll('.description').forEach(text => text.style.display = 'none');
 
         // Add 'selected' class to the clicked item
         item.classList.add('selected');
 
         // Show the expandable text below the selected item
         const expandableText = item.nextElementSibling; // Get the next sibling element
-        if (expandableText && expandableText.classList.contains('expandable-text')) {
+        if (expandableText && expandableText.classList.contains('description')) {
             expandableText.style.display = 'block';
         }
     });
