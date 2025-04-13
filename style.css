@@ -80,10 +80,23 @@ a {
     margin: 5px;
 }
 
+.category {
+    float: right;
+    margin: 5px;
+}
+
 .project {
     float: left;
     margin: 5px;
     overflow: hidden;
+}
+
+.description {
+    display: none;
+}
+
+.list-item.selected+.description {
+    display: block;
 }
 
 .content-container {
