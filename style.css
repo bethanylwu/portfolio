@@ -23,6 +23,11 @@ a {
     color: rgb(110, 108, 108);
 }
 
+p {
+    text-decoration: none;
+    color: rgb(110, 108, 108);
+}
+
 
 /* Mobile Styles */
 /* @media only screen and (max-width: 400px) {
@@ -137,6 +142,27 @@ a {
     width: 100%;
     height: 0 auto;
     margin: none;
+}
+
+.half-image {
+    float: center;
+    width: 50%;
+    height: 0 auto;
+    margin: none;
+}
+
+.caption {
+    font-size: 10px;
+    text-decoration: none;
+    color: rgb(110, 108, 108);
+}
+
+.end-text {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 60px;
+    text-decoration: none;
+    color: rgb(110, 108, 108);
 }
 
 .video-container {
