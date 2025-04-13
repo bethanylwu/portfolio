@@ -1,13 +1,3 @@
-document.querySelectorAll('.list-item').forEach(item => {
-    item.addEventListener('click', event => {
-        // Remove 'selected' class from all list items
-        document.querySelectorAll('.list-item').forEach(el => el.classList.remove('selected'));
-
-        // Add 'selected' class to the clicked item
-        item.classList.add('selected');
-    });
-});
-
 // Handle click events to scroll to the associated project
 document.querySelectorAll('.list-item').forEach(item => {
     item.addEventListener('click', event => {
@@ -15,9 +5,16 @@ document.querySelectorAll('.list-item').forEach(item => {
 
         // Remove 'selected' class from all list items
         document.querySelectorAll('.list-item').forEach(el => el.classList.remove('selected'));
+        document.querySelectorAll('.description').forEach(text => text.style.display = 'none');
 
         // Add 'selected' class to the clicked item
         item.classList.add('selected');
+
+        // Show the expandable text below the selected item
+        const expandableText = item.nextElementSibling; // Get the next sibling element
+        if (expandableText && expandableText.classList.contains('description')) {
+            expandableText.style.display = 'block';
+        }
 
         // Get the associated project ID from the data attribute
         const projectId = item.getAttribute('data-project-id');
@@ -35,51 +32,36 @@ document.querySelectorAll('.list-item').forEach(item => {
     });
 });
 
-// // Automatically select the .list-item when scrolling to the associated .project
-// const projectElements = document.querySelectorAll('.project');
-// const observer = new IntersectionObserver(
-//     (entries) => {
-//         entries.forEach(entry => {
-//             if (entry.isIntersecting) {
-//                 // Get the ID of the project in view
-//                 const projectId = entry.target.id;
+// Select all project elements and list items
+const projectElements = document.querySelectorAll('.project');
+const listItems = document.querySelectorAll('.list-item');
 
-//                 // Find the corresponding list item
-//                 const activeListItem = document.querySelector(`.list-item[data-project-id="${projectId}"]`);
+// Create an Intersection Observer
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                // Get the ID of the project in view
+                const projectId = entry.target.id;
 
-//                 // Update the 'selected' class on the list items
-//                 document.querySelectorAll('.list-item').forEach(item => item.classList.remove('selected'));
-//                 if (activeListItem) {
-//                     activeListItem.classList.add('selected');
-//                 }
-//             }
-//         });
-//     },
-//     {
-//         root: null, // Use the viewport as the root
-//         threshold: 0.5, // Trigger when 50% of the project is visible
-//     }
-// );
+                // Find the corresponding list item
+                const activeListItem = document.querySelector(`.list-item[data-project-id="${projectId}"]`);
 
-document.querySelectorAll('.list-item').forEach(item => {
-    item.addEventListener('click', event => {
-        event.preventDefault(); // Prevent default anchor behavior
+                // Remove 'selected' class from all list items
+                listItems.forEach((item) => item.classList.remove('selected'));
 
-        // Remove 'selected' class from all list items and hide all expandable text
-        document.querySelectorAll('.list-item').forEach(el => el.classList.remove('selected'));
-        document.querySelectorAll('.description').forEach(text => text.style.display = 'none');
-
-        // Add 'selected' class to the clicked item
-        item.classList.add('selected');
-
-        // Show the expandable text below the selected item
-        const expandableText = item.nextElementSibling; // Get the next sibling element
-        if (expandableText && expandableText.classList.contains('description')) {
-            expandableText.style.display = 'block';
-        }
-    });
-});
+                // Add 'selected' class to the active list item
+                if (activeListItem) {
+                    activeListItem.classList.add('selected');
+                }
+            }
+        });
+    },
+    {
+        root: null, // Use the viewport as the root
+        threshold: 0.25, // Trigger when 25% of the project is visible
+    }
+);
 
 // Observe each project element
-projectElements.forEach(project => observer.observe(project));
-
+projectElements.forEach((project) => observer.observe(project));

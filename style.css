@@ -18,6 +18,11 @@
     font-size: 14px;
 }
 
+a {
+    text-decoration: none;
+    color: rgb(110, 108, 108);
+}
+
 
 /* Mobile Styles */
 /* @media only screen and (max-width: 400px) {
@@ -41,10 +46,7 @@
 } */
 
 
-a {
-    text-decoration: none;
-    color: rgb(110, 108, 108);
-}
+
 
 .page {
     position: fixed;
@@ -54,8 +56,9 @@ a {
 
 .header {
     height: 40px;
-    padding-left: 10px;
+    text-align: center;
     align-content: center;
+    margin-right: 10px;
     font-size: 18px;
 }
 
