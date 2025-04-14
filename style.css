@@ -118,16 +118,16 @@ p {
     color: black;
 }
 
+.description.selected {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 75px 3fr 1fr;
+    float: left;
+}
+
 .role {
     font-weight: bold;
     color: rgb(110, 108, 108);
-}
-
-.list-item.selected+.description {
-    width: 100%;
-    grid-template-columns: 75px 3fr 1fr;
-    float: left;
-
 }
 
 .content-container {

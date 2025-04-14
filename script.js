@@ -5,7 +5,7 @@ document.querySelectorAll('.list-item').forEach(item => {
 
         // Remove 'selected' class from all list items
         document.querySelectorAll('.list-item').forEach(el => el.classList.remove('selected'));
-        document.querySelectorAll('.description').forEach(text => text.style.display = 'none');
+        document.querySelectorAll('.description').forEach(el => el.classList.remove('selected'));
 
         // Add 'selected' class to the clicked item
         item.classList.add('selected');
@@ -13,7 +13,7 @@ document.querySelectorAll('.list-item').forEach(item => {
         // Show the expandable text below the selected item
         const expandableText = item.nextElementSibling; // Get the next sibling element
         if (expandableText && expandableText.classList.contains('description')) {
-            expandableText.style.display = 'grid';
+            expandableText.classList.add('selected');
         }
 
         // Get the associated project ID from the data attribute
@@ -35,11 +35,13 @@ document.querySelectorAll('.list-item').forEach(item => {
 // Select all project elements and list items
 const projectElements = document.querySelectorAll('.project');
 const listItems = document.querySelectorAll('.list-item');
+const descriptionItems = document.querySelectorAll('.description');
 
 // Create an Intersection Observer
 const observer = new IntersectionObserver(
     (entries) => {
         entries.forEach((entry) => {
+            // TODO: don't trigger when scrolling through projects after clicking
             if (entry.isIntersecting) {
                 // Get the ID of the project in view
                 const projectId = entry.target.id;
@@ -49,10 +51,16 @@ const observer = new IntersectionObserver(
 
                 // Remove 'selected' class from all list items
                 listItems.forEach((item) => item.classList.remove('selected'));
+                descriptionItems.forEach((item) => item.classList.remove('selected'));
 
-                // Add 'selected' class to the active list item
+                // Add 'selected' class to the active list item and its description
                 if (activeListItem) {
                     activeListItem.classList.add('selected');
+
+                    const expandableText = activeListItem.nextElementSibling; // Get the next sibling element
+                    if (expandableText && expandableText.classList.contains('description')) {
+                        expandableText.classList.add('selected');
+                    }
                 }
             }
         });
