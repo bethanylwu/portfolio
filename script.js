@@ -13,7 +13,7 @@ document.querySelectorAll('.list-item').forEach(item => {
         // Show the expandable text below the selected item
         const expandableText = item.nextElementSibling; // Get the next sibling element
         if (expandableText && expandableText.classList.contains('description')) {
-            expandableText.style.display = 'block';
+            expandableText.style.display = 'grid';
         }
 
         // Get the associated project ID from the data attribute

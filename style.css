@@ -115,8 +115,6 @@ p {
 
 .description {
     display: none;
-    margin-left: 60px;
-    padding: 5px 10px;
     color: black;
 }
 
@@ -126,7 +124,10 @@ p {
 }
 
 .list-item.selected+.description {
-    display: block;
+    width: 100%;
+    grid-template-columns: 75px 3fr 1fr;
+    float: left;
+
 }
 
 .content-container {
@@ -159,8 +160,7 @@ p {
 
 .end-text {
     font-size: 14px;
-    margin-top: 10px;
-    margin-bottom: 60px;
+    margin: 10px 10px 60px 10px;
     text-decoration: none;
     color: rgb(110, 108, 108);
 }
