@@ -1,7 +1,6 @@
 // Handle click events to scroll to the associated project
 document.querySelectorAll('.list-item').forEach(item => {
     item.addEventListener('click', () => {
-        //event.preventDefault(); // Prevent default anchor behavior
 
         // Remove 'selected' class from all list items
         document.querySelectorAll('.list-item, .description').forEach(el => el.classList.remove('selected'));

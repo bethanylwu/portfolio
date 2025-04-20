@@ -47,7 +47,9 @@ p {
 
 .list-container {
     width: 50%;
+    height: 100vh;
     display: flex;
+    overflow-y: auto;
 }
 
 .list-item {
@@ -89,6 +91,27 @@ p {
     float: left;
     margin: 5px;
     overflow: hidden;
+}
+
+.bio-header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60px 3fr 1fr;
+    float: left;
+    position: sticky;
+    bottom: 50px;
+}
+
+.bio-contact {
+    display: none;
+    color: black;
+}
+
+.bio-contact.selected {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 75px 3fr 1fr;
+    float: left;
 }
 
 .description {
@@ -166,6 +189,10 @@ p {
     border: none;
 }
 
+.bio {
+    height: 100vh;
+    width: 100%;
+}
 
 /* Mobile Styles */
 @media only screen and (max-width: 600px) {
