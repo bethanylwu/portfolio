@@ -85,7 +85,7 @@ p {
     margin-right: 10px;
 }
 
-.project {
+.project-name {
     float: left;
     margin: 5px;
     overflow: hidden;
@@ -114,6 +114,12 @@ p {
     display: flex;
     height: 100vh;
     overflow-y: scroll;
+}
+
+.project {
+    float: left;
+    margin: 5px 5px 50px 5px;
+    overflow: hidden;
 }
 
 .article-image {
@@ -197,7 +203,6 @@ p {
     .project {
         flex: 0 0 auto;
         width: 100%;
-        margin-right: 10px;
         margin-bottom: 0%;
     }
 
