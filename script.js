@@ -1,19 +1,27 @@
 // Handle click events to scroll to the associated project
-document.querySelectorAll('.list-item' && 'bio-header').forEach(item => {
+document.querySelectorAll('.list-item, .bio-header').forEach(item => {
     item.addEventListener('click', () => {
 
         // Remove 'selected' class from all list items
-        document.querySelectorAll('.list-item, .description, bio-header, bio-contact').forEach(el => el.classList.remove('selected'));
+        document.querySelectorAll('.list-item, .description, .bio-header, .bio-contact').forEach(el => el.classList.remove('selected'));
 
         // Add 'selected' class to the clicked item
         item.classList.add('selected');
 
-        // Show the expandable text below the selected item
-        const expandableText = item.nextElementSibling; // Get the next sibling element
-        if (expandableText && expandableText.classList.contains('description' || 'bio-contact')) {
-            expandableText.classList.add('selected');
+        // Show the expandable text based on element type
+        if (item.classList.contains('bio-header')) {
+            // For bio-header, get the previous element (bio-contact)
+            const expandableText = item.previousElementSibling;
+            if (expandableText && expandableText.classList.contains('bio-contact')) {
+                expandableText.classList.add('selected');
+            }
+        } else {
+            // For other items, get the next element (description)
+            const expandableText = item.nextElementSibling;
+            if (expandableText && expandableText.classList.contains('description')) {
+                expandableText.classList.add('selected');
+            }
         }
-
         // Get the associated project ID from the data attribute
         const projectId = item.getAttribute('data-project-id');
 

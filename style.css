@@ -23,6 +23,10 @@ a {
     color: rgb(110, 108, 108);
 }
 
+a:hover {
+    color: rgb(251, 208, 12);
+}
+
 p {
     text-decoration: none;
     color: rgb(110, 108, 108);
@@ -76,19 +80,26 @@ p {
     width: 100%;
     display: grid;
     grid-template-columns: 60px 3fr 1fr;
-    float: left;
-    position: sticky;
-    bottom: 0;
+    position: relative;
+    z-index: 2;
 }
 
 .bio-contact {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    position: relative;
+    z-index: 1;
     display: none;
     color: black;
 }
 
-.list-item:hover,
-.bio-header:hover {
-    color: rgb(251, 208, 12);
+.bio-contact.selected {
+    max-height: 150px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 75px 3fr 1fr;
+    float: left;
 }
 
 .list-item.selected,
@@ -127,8 +138,7 @@ p {
     color: black;
 }
 
-.description.selected,
-.bio-contact.selected {
+.description.selected {
     width: 100%;
     display: grid;
     grid-template-columns: 75px 3fr 1fr;
@@ -162,16 +172,17 @@ p {
 }
 
 .half-image {
-    float: center;
+    display: block;
     width: 50%;
     height: 0 auto;
-    margin: none;
+    margin: 0;
 }
 
 .caption {
     font-size: 10px;
     text-decoration: none;
     color: rgb(110, 108, 108);
+    margin: none;
 }
 
 .end-text {
@@ -199,7 +210,7 @@ p {
 }
 
 .bio {
-    height: 100vh;
+    height: auto;
     width: 100%;
 }
 
