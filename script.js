@@ -79,3 +79,26 @@ const observer = new IntersectionObserver(
 
 // Observe each project element
 projectElements.forEach((project) => observer.observe(project));
+
+// Header hover interaction
+document.addEventListener('DOMContentLoaded', function () {
+    const header = document.querySelector('.header');
+    const quotes = document.querySelectorAll('.header-quote');
+
+    // Function to show a random quote
+    function showRandomQuote() {
+        // Hide all quotes first
+        quotes.forEach(quote => {
+            quote.classList.remove('active');
+        });
+
+        // Select a random quote
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        quotes[randomIndex].classList.add('active');
+    }
+
+    // Add event listeners for mouse enter/leave
+    header.addEventListener('mouseenter', showRandomQuote);
+
+    // When mouse leaves, all quotes will be hidden due to CSS rules
+});
