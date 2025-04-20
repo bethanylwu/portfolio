@@ -72,11 +72,27 @@ p {
     float: left;
 }
 
-.list-item:hover {
+.bio-header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60px 3fr 1fr;
+    float: left;
+    position: sticky;
+    bottom: 0;
+}
+
+.bio-contact {
+    display: none;
+    color: black;
+}
+
+.list-item:hover,
+.bio-header:hover {
     color: rgb(251, 208, 12);
 }
 
-.list-item.selected {
+.list-item.selected,
+.bio-header.selected {
     font-weight: bold;
     color: rgb(255, 208, 0);
 }
@@ -106,33 +122,13 @@ p {
     overflow: hidden;
 }
 
-.bio-header {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 60px 3fr 1fr;
-    float: left;
-    position: sticky;
-    bottom: 0;
-}
-
-.bio-contact {
-    display: none;
-    color: black;
-}
-
-.bio-contact.selected {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 75px 3fr 1fr;
-    float: left;
-}
-
 .description {
     display: none;
     color: black;
 }
 
-.description.selected {
+.description.selected,
+.bio-contact.selected {
     width: 100%;
     display: grid;
     grid-template-columns: 75px 3fr 1fr;

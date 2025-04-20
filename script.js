@@ -1,17 +1,16 @@
 // Handle click events to scroll to the associated project
-document.querySelectorAll('.list-item').forEach(item => {
+document.querySelectorAll('.list-item' && 'bio-header').forEach(item => {
     item.addEventListener('click', () => {
 
         // Remove 'selected' class from all list items
-        document.querySelectorAll('.list-item, .description').forEach(el => el.classList.remove('selected'));
-        //document.querySelectorAll('.description').forEach(el => el.classList.remove('selected'));
+        document.querySelectorAll('.list-item, .description, bio-header, bio-contact').forEach(el => el.classList.remove('selected'));
 
         // Add 'selected' class to the clicked item
         item.classList.add('selected');
 
         // Show the expandable text below the selected item
         const expandableText = item.nextElementSibling; // Get the next sibling element
-        if (expandableText && expandableText.classList.contains('description')) {
+        if (expandableText && expandableText.classList.contains('description' || 'bio-contact')) {
             expandableText.classList.add('selected');
         }
 
