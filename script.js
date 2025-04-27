@@ -102,3 +102,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // When mouse leaves, all quotes will be hidden due to CSS rules
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const listContainer = document.querySelector('.list-container');
+
+    if (mobileMenuToggle && listContainer) {
+        mobileMenuToggle.addEventListener('click', function () {
+            this.classList.toggle('active');
+            listContainer.classList.toggle('active');
+        });
+
+        // Close dropdown when a list item is clicked
+        const listItems = document.querySelectorAll('.list-item');
+        listItems.forEach(item => {
+            item.addEventListener('click', function () {
+                if (window.innerWidth <= 600) {
+                    listContainer.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                }
+            });
+        });
+    }
+});
