@@ -246,8 +246,6 @@ p {
     .header {
         background-color: rgb(255, 208, 0);
         position: relative;
-        height: auto;
-        padding: 10px 0;
     }
 
     .header-cover,
@@ -256,19 +254,13 @@ p {
         display: none;
     }
 
-    .header:hover {
-        background-color: rgb(255, 208, 0);
-    }
-
-    /* Mobile dropdown menu styles */
     .mobile-menu-toggle {
         display: block;
         background-color: transparent;
         border: none;
-        color: #fff;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 5px 10px;
+        color: #ffffff;
+        font-size: 14px;
+        padding: 5px 1-px;
         cursor: pointer;
         background-color: rgb(255, 208, 0);
         width: 100%;
@@ -285,6 +277,15 @@ p {
         content: '▲';
     }
 
+    .header:hover {
+        background-color: rgb(255, 208, 0);
+    }
+
+    .page {
+        flex-direction: column;
+        height: 100vh;
+    }
+
     .list-container {
         width: 100%;
         height: auto;
@@ -294,22 +295,17 @@ p {
     }
 
     .list-container.active {
-        max-height: 80vh;
+        max-height: 50vh;
         overflow-y: auto;
-    }
-
-    /* When not expanded, hide the list */
-    .list {
-        display: block;
-        width: 100%;
-        background-color: rgb(245, 241, 241);
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .content-container {
         width: 100%;
-        height: calc(100vh - 40px);
+        height: 50vh;
         overflow-y: auto;
+        position: fixed;
+        bottom: 0;
+        left: 0;
     }
 }
 
@@ -382,8 +378,4 @@ p {
 }
 
 /* Desktop Styles */
-@media only screen and (min-width: 1025px) {
-    body {
-        background-color: #b2d6ff
-    }
-}
+@media only screen and (min-width: 1025px) {}
