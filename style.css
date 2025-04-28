@@ -269,8 +269,8 @@ p {
 
     .mobile-menu-toggle:after {
         content: '▼';
-        margin-left: 5px;
-        font-size: 12px;
+        margin-right: 10px;
+        font-size: 14px;
     }
 
     .mobile-menu-toggle.active:after {
@@ -297,6 +297,36 @@ p {
     .list-container.active {
         max-height: 50vh;
         overflow-y: auto;
+    }
+
+    .list-item {
+        display: flex;
+    }
+
+    /* Hide year and category in list items */
+    .list-item .year-show,
+    .list-item .year-noshow,
+    .list-item .category {
+        display: none;
+    }
+
+    .list-item .project-name {
+        width: 100%;
+    }
+
+    /* Same for the bio-header section */
+    .bio-header .year-noshow,
+    .bio-header .category {
+        display: none;
+    }
+
+    .bio-header {
+        width: 100%;
+        display: flex;
+    }
+
+    .bio-header .project {
+        width: 100%;
     }
 
     .content-container {
