@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             // Close dropdown when a list item is clicked
-            const listItems = document.querySelectorAll('.list-item');
+            const listItems = document.querySelectorAll('.list-item, .bio-header');
             listItems.forEach(item => {
                 item.addEventListener('click', function () {
                     if (window.innerWidth <= 600) {
@@ -132,14 +132,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Function to update the selected project title in the header
         function updateSelectedProjectTitle() {
-            const selectedItem = document.querySelector('.list-item.selected');
+            const selectedItem = document.querySelector('.list-item.selected, .bio-header.selected');
             const titleDisplay = document.querySelector('.selected-project-title');
 
             if (selectedItem && titleDisplay) {
-                const projectName = selectedItem.querySelector('.project-name').textContent;
-                titleDisplay.textContent = projectName;
+                // Check if it's bio-header or a regular list item
+                if (selectedItem.classList.contains('bio-header')) {
+                    // For bio header, get text from project
+                    const bioText = selectedItem.querySelector('.project').textContent;
+                    titleDisplay.textContent = bioText;
+                } else if (selectedItem.classList.contains('list-item')) {
+                    // For regular list items, get text from project-name
+                    const projectName = selectedItem.querySelector('.project-name').textContent;
+                    titleDisplay.textContent = projectName;
+                }
             } else if (titleDisplay) {
-                titleDisplay.textContent = ' Select Project'; // Default text when nothing is selected
+                titleDisplay.textContent = 'Select Project'; // Default text when nothing is selected
             }
         }
 
@@ -148,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateSelectedProjectTitle();
 
         // Add click event listeners to project list items
-        document.querySelectorAll('.list-item').forEach(item => {
+        document.querySelectorAll('.list-item, .bio-header').forEach(item => {
             item.addEventListener('click', function () {
                 // Update the selected project title after a small delay to ensure selected class is applied
                 setTimeout(updateSelectedProjectTitle, 50);
