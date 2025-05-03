@@ -246,6 +246,9 @@ p {
     .header {
         background-color: rgb(255, 208, 0);
         position: relative;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
     }
 
     .header-cover,
@@ -254,23 +257,34 @@ p {
         display: none;
     }
 
+    .selected-project-title {
+        display: block;
+        flex: 1;
+        color: #ffffff;
+        font-weight: bold;
+        background-color: rgb(255, 208, 0);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: left;
+        align-items: center;
+        padding: 10px;
+    }
+
     .mobile-menu-toggle {
         display: block;
         background-color: transparent;
         border: none;
         color: #ffffff;
         font-size: 14px;
-        padding: 5px 1-px;
-        cursor: pointer;
+        padding: 10px;
         background-color: rgb(255, 208, 0);
-        width: 100%;
-        text-align: right;
+        width: auto;
+        flex-shrink: 0;
     }
 
     .mobile-menu-toggle:after {
         content: '▼';
-        margin-right: 10px;
-        font-size: 14px;
     }
 
     .mobile-menu-toggle.active:after {
@@ -282,6 +296,7 @@ p {
     }
 
     .page {
+        display: flex;
         flex-direction: column;
         height: 100vh;
     }
@@ -300,6 +315,7 @@ p {
     }
 
     .list-item {
+        width: 100%;
         display: flex;
     }
 
@@ -327,6 +343,14 @@ p {
 
     .bio-header .project {
         width: 100%;
+    }
+
+    .description.selected {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        position: fixed;
+        padding: 10px;
     }
 
     .content-container {
@@ -393,22 +417,13 @@ p {
     .video-container {
         width: 90vw;
         height: auto;
-        /* Reset height */
-        /* padding-bottom: 56.25%; */
-        /* 16:9 aspect ratio (9/16 = 0.5625) for 90vw width */
-        /* Reset padding-bottom */
         padding-bottom: 0;
         align-content: center;
-        /* position: relative; */
-        /* margin-right: 10px; */
-        /* scroll-snap-align: center; */
+
     }
 
     .video-container iframe {
         position: relative;
-        /* position: absolute; */
-        /* top: 0; */
-        /* left: 0; */
         width: 100%;
         height: 75%;
         border: none;

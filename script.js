@@ -125,3 +125,30 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// Function to update the selected project title in the header
+function updateSelectedProjectTitle() {
+    const selectedItem = document.querySelector('.list-item.selected');
+    const titleDisplay = document.querySelector('.selected-project-title');
+
+    if (selectedItem && titleDisplay) {
+        const projectName = selectedItem.querySelector('.project-name').textContent;
+        titleDisplay.textContent = projectName;
+    } else if (titleDisplay) {
+        titleDisplay.textContent = 'Projects'; // Default text when nothing is selected
+    }
+}
+
+// Call this function whenever a project is selected
+document.addEventListener('DOMContentLoaded', function () {
+    // Set default title
+    updateSelectedProjectTitle();
+
+    // Add click event listeners to project list items
+    document.querySelectorAll('.list-item').forEach(item => {
+        item.addEventListener('click', function () {
+            // Update the selected project title after a small delay to ensure selected class is applied
+            setTimeout(updateSelectedProjectTitle, 50);
+        });
+    });
+});
