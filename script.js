@@ -80,8 +80,10 @@ const observer = new IntersectionObserver(
 // Observe each project element
 projectElements.forEach((project) => observer.observe(project));
 
-// Header hover interaction
+
 document.addEventListener('DOMContentLoaded', function () {
+
+    // Header hover interaction for desktop and tablet view
     const header = document.querySelector('.header');
     const quotes = document.querySelectorAll('.header-quote');
 
@@ -101,54 +103,60 @@ document.addEventListener('DOMContentLoaded', function () {
     header.addEventListener('mouseenter', showRandomQuote);
 
     // When mouse leaves, all quotes will be hidden due to CSS rules
-});
 
-document.addEventListener('DOMContentLoaded', function () {
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const listContainer = document.querySelector('.list-container');
 
-    if (mobileMenuToggle && listContainer) {
-        mobileMenuToggle.addEventListener('click', function () {
-            this.classList.toggle('active');
-            listContainer.classList.toggle('active');
-        });
+    /* --------------- MOBILE VIEW JAVA SCRIPT --------------- */
+    if (window.innerWidth <= 600) {
+        // mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const listContainer = document.querySelector('.list-container');
 
-        // Close dropdown when a list item is clicked
-        const listItems = document.querySelectorAll('.list-item');
-        listItems.forEach(item => {
+        if (mobileMenuToggle && listContainer) {
+            mobileMenuToggle.addEventListener('click', function () {
+                this.classList.toggle('active');
+                listContainer.classList.toggle('active');
+            });
+
+            // Close dropdown when a list item is clicked
+            const listItems = document.querySelectorAll('.list-item');
+            listItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    if (window.innerWidth <= 600) {
+                        listContainer.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    }
+                });
+            });
+        }
+
+
+        // Function to update the selected project title in the header
+        function updateSelectedProjectTitle() {
+            const selectedItem = document.querySelector('.list-item.selected');
+            const titleDisplay = document.querySelector('.selected-project-title');
+
+            if (selectedItem && titleDisplay) {
+                const projectName = selectedItem.querySelector('.project-name').textContent;
+                titleDisplay.textContent = projectName;
+            } else if (titleDisplay) {
+                titleDisplay.textContent = ' Select Project'; // Default text when nothing is selected
+            }
+        }
+
+
+        // Set default title
+        updateSelectedProjectTitle();
+
+        // Add click event listeners to project list items
+        document.querySelectorAll('.list-item').forEach(item => {
             item.addEventListener('click', function () {
-                if (window.innerWidth <= 600) {
-                    listContainer.classList.remove('active');
-                    mobileMenuToggle.classList.remove('active');
-                }
+                // Update the selected project title after a small delay to ensure selected class is applied
+                setTimeout(updateSelectedProjectTitle, 50);
             });
         });
     }
+
 });
 
-// Function to update the selected project title in the header
-function updateSelectedProjectTitle() {
-    const selectedItem = document.querySelector('.list-item.selected');
-    const titleDisplay = document.querySelector('.selected-project-title');
 
-    if (selectedItem && titleDisplay) {
-        const projectName = selectedItem.querySelector('.project-name').textContent;
-        titleDisplay.textContent = projectName;
-    } else if (titleDisplay) {
-        titleDisplay.textContent = 'Projects'; // Default text when nothing is selected
-    }
-}
 
-// Call this function whenever a project is selected
-document.addEventListener('DOMContentLoaded', function () {
-    // Set default title
-    updateSelectedProjectTitle();
-
-    // Add click event listeners to project list items
-    document.querySelectorAll('.list-item').forEach(item => {
-        item.addEventListener('click', function () {
-            // Update the selected project title after a small delay to ensure selected class is applied
-            setTimeout(updateSelectedProjectTitle, 50);
-        });
-    });
-});
