@@ -9,6 +9,10 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+:root {
+    --header-height: 40px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -35,14 +39,14 @@ p {
 
 .page {
     position: fixed;
-    display: flex;
+    height: calc(100vh - var(--header-height));
     flex-wrap: wrap;
     /* width: 100%; */
     margin: 0 auto;
 }
 
 .header {
-    height: 40px;
+    height: var(--header-height);
     text-align: center;
     align-content: center;
     /* margin-right: 10px; */
@@ -76,16 +80,16 @@ p {
 }
 
 .list-container {
+    height: 100%;
     width: 50%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     overflow-y: hidden;
+    justify-content: space-between;
 }
 
 .list {
     width: 100%;
-    height: 95%;
     overflow-y: auto;
 }
 
@@ -308,11 +312,26 @@ p {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
+        background: white;
+        z-index: 2;
     }
 
     .list-container.active {
         max-height: 50vh;
         overflow-y: auto;
+    }
+
+    .list-container.active .description,
+    .list-container.active .bio-contact.selected {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+    }
+
+    .list-container .description,
+    .list-container .bio-contact.selected {
+        opacity: 1;
+        transition: opacity 0.2s 0.3s;
     }
 
     .list-item {
@@ -346,14 +365,23 @@ p {
 
     .bio-contact {
         display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        max-height: unset;
     }
 
     .bio-contact.selected {
         display: block;
+        margin: 10px;
     }
 
     .bio-header .project {
         width: 100%;
+    }
+
+    .bio-target {
+        position: static;
     }
 
     .description.selected {
@@ -459,7 +487,8 @@ p {
     }
 }
 
-/* Tablet Styles */
+/* --------------- Tablet Styles --------------- */
+/*
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
 
     .page {
@@ -549,9 +578,10 @@ p {
         border: none;
     }
 }
+*/
 
 /* Desktop Styles */
-@media only screen and (min-width: 1025px) {
+@media only screen and (min-width: 601px) {
 
     .mobile-menu-toggle {
         display: none;

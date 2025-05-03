@@ -68,6 +68,14 @@ const observer = new IntersectionObserver(
                         expandableText.classList.add('selected');
                     }
                 }
+
+                console.log(entry.target);
+
+                if (projectId == 'about-me') {
+                    document.querySelector('.bio-contact').classList.add('selected');
+                } else if (projectId != '') {
+                    document.querySelector('.bio-contact').classList.remove('selected');
+                }
             }
         });
     },
