@@ -71,11 +71,17 @@ const observer = new IntersectionObserver(
 
                 console.log(entry.target);
 
+
                 if (projectId == 'about-me') {
                     document.querySelector('.bio-contact').classList.add('selected');
+                    document.querySelector('.bio-header').classList.add('selected');
                 } else if (projectId != '') {
                     document.querySelector('.bio-contact').classList.remove('selected');
+                    document.querySelector('.bio-header').classList.remove('selected');
                 }
+
+                // Update the selected project title
+                updateSelectedProjectTitle();
             }
         });
     },
@@ -113,107 +119,101 @@ document.addEventListener('DOMContentLoaded', function () {
     // When mouse leaves, all quotes will be hidden due to CSS rules
 
 
-    /* --------------- MOBILE VIEW JAVA SCRIPT --------------- */
-    if (window.innerWidth <= 600) {
-        // mobile menu toggle
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const listContainer = document.querySelector('.list-container');
+    /* --------------- MOBILE VIEW MENU JAVASCRIPT --------------- */
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const listContainer = document.querySelector('.list-container');
 
-        if (mobileMenuToggle && listContainer) {
-            mobileMenuToggle.addEventListener('click', function () {
-                this.classList.toggle('active');
-                listContainer.classList.toggle('active');
-            });
-
-            // Close dropdown when a list item is clicked
-            const listItems = document.querySelectorAll('.list-item, .bio-header');
-            listItems.forEach(item => {
-                item.addEventListener('click', function () {
-                    if (window.innerWidth <= 600) {
-                        listContainer.classList.remove('active');
-                        mobileMenuToggle.classList.remove('active');
-                    }
-                });
-            });
-        }
-
-
-        // Function to update the selected project title in the header
-        function updateSelectedProjectTitle() {
-            const selectedItem = document.querySelector('.list-item.selected, .bio-header.selected');
-            const titleDisplay = document.querySelector('.selected-project-title');
-
-            if (selectedItem && titleDisplay) {
-                // Check if it's bio-header or a regular list item
-                if (selectedItem.classList.contains('bio-header')) {
-                    // For bio header, get text from project
-                    const bioText = selectedItem.querySelector('.project').textContent;
-                    titleDisplay.textContent = bioText;
-                } else if (selectedItem.classList.contains('list-item')) {
-                    // For regular list items, get text from project-name
-                    const projectName = selectedItem.querySelector('.project-name').textContent;
-                    titleDisplay.textContent = projectName;
-                }
-            } else if (titleDisplay) {
-                titleDisplay.textContent = 'Select Project'; // Default text when nothing is selected
-            }
-        }
-
-
-        // Set default title
-        updateSelectedProjectTitle();
-
-        // Add click event listeners to project list items
-        document.querySelectorAll('.list-item, .bio-header').forEach(item => {
-            item.addEventListener('click', function () {
-                // Update the selected project title after a small delay to ensure selected class is applied
-                setTimeout(updateSelectedProjectTitle, 50);
-            });
+    if (mobileMenuToggle && listContainer) {
+        mobileMenuToggle.addEventListener('click', function () {
+            this.classList.toggle('active');
+            listContainer.classList.toggle('active');
         });
 
-
-        // Update click events to handle bio-header and bio-contact properly
-        document.querySelectorAll('.list-item, .bio-header').forEach(item => {
+        // Close dropdown when a list item is clicked
+        const listItems = document.querySelectorAll('.list-item, .bio-header');
+        listItems.forEach(item => {
             item.addEventListener('click', function () {
-                // Hide all expandable content first
-                document.querySelectorAll('.description, .bio-contact').forEach(
-                    content => content.classList.remove('selected')
-                );
-
-                // Remove selected class from all items
-                document.querySelectorAll('.list-item, .bio-header').forEach(
-                    listItem => listItem.classList.remove('selected')
-                );
-
-                // Add selected class to clicked item
-                this.classList.add('selected');
-
-                // Show appropriate expandable content
-                if (this.classList.contains('bio-header')) {
-                    // For bio-header, find the bio-contact element
-                    const bioContact = document.querySelector('.bio-contact');
-                    if (bioContact) {
-                        bioContact.classList.add('selected');
-                    }
-                } else {
-                    // For regular list items, show description
-                    const description = this.nextElementSibling;
-                    if (description && description.classList.contains('description')) {
-                        description.classList.add('selected');
-                    }
+                if (window.innerWidth <= 600) {
+                    listContainer.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
                 }
-
-                // Close mobile menu
-                listContainer.classList.remove('active');
-                mobileMenuToggle.classList.remove('active');
-
-                // Update the title display after a small delay
-                setTimeout(updateSelectedProjectTitle, 50);
             });
         });
     }
 
+
+    // Set default title
+    updateSelectedProjectTitle();
+
+    // Add click event listeners to project list items
+    document.querySelectorAll('.list-item, .bio-header').forEach(item => {
+        item.addEventListener('click', function () {
+            // Update the selected project title after a small delay to ensure selected class is applied
+            setTimeout(updateSelectedProjectTitle, 50);
+        });
+    });
+
+
+    // Update click events to handle bio-header and bio-contact properly
+    document.querySelectorAll('.list-item, .bio-header').forEach(item => {
+        item.addEventListener('click', function () {
+            // Hide all expandable content first
+            document.querySelectorAll('.description, .bio-contact').forEach(
+                content => content.classList.remove('selected')
+            );
+
+            // Remove selected class from all items
+            document.querySelectorAll('.list-item, .bio-header').forEach(
+                listItem => listItem.classList.remove('selected')
+            );
+
+            // Add selected class to clicked item
+            this.classList.add('selected');
+
+            // Show appropriate expandable content
+            if (this.classList.contains('bio-header')) {
+                // For bio-header, find the bio-contact element
+                const bioContact = document.querySelector('.bio-contact');
+                if (bioContact) {
+                    bioContact.classList.add('selected');
+                }
+            } else {
+                // For regular list items, show description
+                const description = this.nextElementSibling;
+                if (description && description.classList.contains('description')) {
+                    description.classList.add('selected');
+                }
+            }
+
+            // Close mobile menu
+            listContainer.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+
+            // Update the title display after a small delay
+            setTimeout(updateSelectedProjectTitle, 50);
+        });
+    });
+
 });
 
+// Function to update the selected project title in the header
+function updateSelectedProjectTitle() {
+    const selectedItem = document.querySelector('.list-item.selected, .bio-header.selected');
+    const titleDisplay = document.querySelector('.selected-project-title');
 
+    if (selectedItem && titleDisplay) {
+        // Check if it's bio-header or a regular list item
+        if (selectedItem.classList.contains('bio-header')) {
+            // For bio header, get text from project
+            const bioText = selectedItem.querySelector('.project').textContent;
+            titleDisplay.textContent = bioText;
+        } else if (selectedItem.classList.contains('list-item')) {
+            // For regular list items, get text from project-name
+            const projectName = selectedItem.querySelector('.project-name').textContent;
+            titleDisplay.textContent = projectName;
+        }
+    } else if (titleDisplay) {
+        titleDisplay.textContent = 'Select Project'; // Default text when nothing is selected
+    }
+}
 
