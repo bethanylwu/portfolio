@@ -162,6 +162,47 @@ document.addEventListener('DOMContentLoaded', function () {
                 setTimeout(updateSelectedProjectTitle, 50);
             });
         });
+
+
+        // Update click events to handle bio-header and bio-contact properly
+        document.querySelectorAll('.list-item, .bio-header').forEach(item => {
+            item.addEventListener('click', function () {
+                // Hide all expandable content first
+                document.querySelectorAll('.description, .bio-contact').forEach(
+                    content => content.classList.remove('selected')
+                );
+
+                // Remove selected class from all items
+                document.querySelectorAll('.list-item, .bio-header').forEach(
+                    listItem => listItem.classList.remove('selected')
+                );
+
+                // Add selected class to clicked item
+                this.classList.add('selected');
+
+                // Show appropriate expandable content
+                if (this.classList.contains('bio-header')) {
+                    // For bio-header, find the bio-contact element
+                    const bioContact = document.querySelector('.bio-contact');
+                    if (bioContact) {
+                        bioContact.classList.add('selected');
+                    }
+                } else {
+                    // For regular list items, show description
+                    const description = this.nextElementSibling;
+                    if (description && description.classList.contains('description')) {
+                        description.classList.add('selected');
+                    }
+                }
+
+                // Close mobile menu
+                listContainer.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+
+                // Update the title display after a small delay
+                setTimeout(updateSelectedProjectTitle, 50);
+            });
+        });
     }
 
 });

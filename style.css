@@ -339,7 +339,17 @@ p {
 
     .bio-header {
         width: 100%;
-        display: flex;
+        display: block;
+        cursor: pointer;
+        /* not sure what the cursor pointer does - need to research more later */
+    }
+
+    .bio-contact {
+        display: none;
+    }
+
+    .bio-contact.selected {
+        display: block;
     }
 
     .bio-header .project {
