@@ -193,7 +193,7 @@ p {
 
 .project {
     float: left;
-    margin: 5px 5px 50px 5px;
+    margin: 15px 5px 15px 5px;
     overflow: hidden;
 }
 
@@ -202,6 +202,21 @@ p {
     width: 100%;
     height: 0 auto;
     margin: none;
+}
+
+.divider-image .mobile-divider {
+    width: auto;
+    height: 20%;
+    transform: rotate(90deg);
+    margin: auto;
+}
+
+
+.divider-image .desktop-divider {
+    display: block;
+    width: 30%;
+    height: auto;
+    margin: auto;
 }
 
 .half-image {
@@ -291,12 +306,13 @@ p {
         flex-shrink: 0;
     }
 
+    /* look into symbol codes  */
     .mobile-menu-toggle:after {
-        content: '▼';
+        content: '◁';
     }
 
     .mobile-menu-toggle.active:after {
-        content: '▲';
+        content: '▽';
     }
 
     .header:hover {
@@ -439,6 +455,7 @@ p {
         /* Fill container height */
         overflow-y: auto;
         /* Allow vertical scrolling within each project */
+        margin: 5px 15px 5px 15px;
     }
 
     .article-image {
@@ -451,6 +468,16 @@ p {
         /* Center the image when scrolling */
         object-fit: contain;
         /* Maintain aspect ratio */
+    }
+
+    .divider-image {
+        display: flex;
+        justify-content: center;
+        width: 50px
+    }
+
+    .divider-image .desktop-divider {
+        display: none;
     }
 
     .half-image {
@@ -605,4 +632,14 @@ p {
         display: none;
     }
 
+    .divider-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        float: left;
+    }
+
+    .mobile-divider {
+        display: none;
+    }
 }
