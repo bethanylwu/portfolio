@@ -132,8 +132,6 @@ p {
     grid-column: 2;
 }
 
-.bio-contact.selected .role,
-.bio-contact.selected a,
 .bio-contact.selected .contact-links {
     grid-column: 2;
     font-size: 10px;
