@@ -132,9 +132,10 @@ p {
     grid-column: 2;
 }
 
+.bio-contact.selected .role,
+.bio-contact.selected a,
 .bio-contact.selected .contact-links {
     grid-column: 2;
-    font-size: 10px;
 }
 
 .list-item.selected,
@@ -343,15 +344,13 @@ p {
         overflow-y: auto;
     }
 
-    .list-container.active .description,
-    .list-container.active .bio-contact.selected {
+    .list-container.active .description {
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.2s;
     }
 
-    .list-container .description,
-    .list-container .bio-contact.selected {
+    .list-container .description {
         opacity: 1;
         transition: opacity 0.2s 0.3s;
     }
@@ -372,47 +371,46 @@ p {
         width: 100%;
     }
 
-    /* Same for the bio-header section */
-    .bio-header .year-noshow,
+    /* Same for the bio-header section  */
+    /* .bio-header .year-noshow,
     .bio-header .category {
         display: none;
-    }
+    } */
 
-    .bio-header {
+    /* .bio-header {
         width: 100%;
         display: block;
         cursor: pointer;
-        /* not sure what the cursor pointer does - need to research more later */
-    }
+    } */
 
-    .one-liner {
+    /* .one-liner {
         display: block;
         padding-right: 15px;
         padding-bottom: 20px;
 
-    }
+    } */
 
 
-    .bio-contact {
+    /* .bio-contact {
         display: none;
         position: absolute;
         left: 0;
         top: 0;
         max-height: unset;
-    }
+    } */
 
-    .bio-contact.selected {
+    /* .bio-contact.selected {
         display: block;
         margin: 10px;
         max-height: fit-content;
-    }
+    } */
 
-    .bio-header .project {
+    /* .bio-header .project {
         width: 100%;
-    }
+    } */
 
     .bio-target {
-        position: static;
+        display: none;
     }
 
     .description.selected {
@@ -478,7 +476,7 @@ p {
     .divider-image {
         display: flex;
         justify-content: center;
-        width: 50px
+        width: 75px
     }
 
     .divider-image .desktop-divider {
@@ -645,6 +643,10 @@ p {
     }
 
     .mobile-divider {
+        display: none;
+    }
+
+    .bio-target-mobile {
         display: none;
     }
 }
