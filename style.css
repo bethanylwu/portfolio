@@ -119,17 +119,20 @@ p {
     overflow: hidden;
     transition: max-height 0.3s ease;
     position: relative;
-    z-index: 1;
     display: none;
     color: black;
 }
 
 .bio-contact.selected {
-    max-height: 150px;
+    max-height: fit-content;
     width: 100%;
     display: grid;
     grid-template-columns: 75px 3fr 1fr;
-    float: left;
+    grid-column: 2;
+}
+
+.bio-contact.selected .contact-links {
+    grid-column: 2
 }
 
 .list-item.selected,
@@ -365,8 +368,8 @@ p {
 
     .one-liner {
         display: block;
-        padding-right: 10px;
-        padding-bottom: 10px;
+        padding-right: 15px;
+        padding-bottom: 20px;
     }
 
     .bio-contact {
@@ -599,7 +602,7 @@ p {
     }
 
     .one-liner {
-        visibility: hidden;
+        display: none;
     }
 
 }
