@@ -50,6 +50,7 @@ p {
     text-align: center;
     align-content: center;
     /* margin-right: 10px; */
+    overflow: hidden;
 }
 
 .header-cover {
@@ -271,6 +272,7 @@ p {
         display: flex;
         justify-content: space-between;
         width: 100%;
+        overflow: hidden;
     }
 
     .header-cover,
