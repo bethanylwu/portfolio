@@ -115,6 +115,10 @@ p {
     z-index: 2;
 }
 
+.bio-header .name {
+    margin: 5px;
+}
+
 .bio-contact {
     max-height: 0;
     overflow: hidden;
@@ -373,6 +377,14 @@ p {
 
     .bio-target {
         display: none;
+    }
+
+    .bio-target-mobile .one-liner {
+        margin-bottom: 15px
+    }
+
+    .bio-target-mobile .project-name {
+        font-weight: bold;
     }
 
     .description.selected {
