@@ -25,6 +25,13 @@ document.querySelectorAll('.list-item, .bio-header').forEach(item => {
         // Get the associated project ID from the data attribute
         const projectId = item.getAttribute('data-project-id');
 
+        if (history.pushState) {
+            history.pushState(null, null, `#${projectId}`);
+        }
+        else {
+            location.hash = `#${projectId}`;
+        }
+
         // Find the corresponding project element
         const projectElement = document.getElementById(projectId);
 
@@ -51,6 +58,13 @@ const observer = new IntersectionObserver(
             if (entry.isIntersecting) {
                 // Get the ID of the project in view
                 const projectId = entry.target.id;
+
+                // update the url hash without causing page jump
+                if (history.pushState) {
+                    history.pushState(null, null, `#${projectId}`);
+                } else {
+                    location.hash = `#${projectId}`;
+                }
 
                 // Find the corresponding list item
                 const activeListItem = document.querySelector(`.list-item[data-project-id="${projectId}"]`);
