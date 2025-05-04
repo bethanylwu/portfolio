@@ -363,6 +363,12 @@ p {
         /* not sure what the cursor pointer does - need to research more later */
     }
 
+    .one-liner {
+        display: block;
+        padding-right: 10px;
+        padding-bottom: 10px;
+    }
+
     .bio-contact {
         display: none;
         position: absolute;
@@ -374,6 +380,7 @@ p {
     .bio-contact.selected {
         display: block;
         margin: 10px;
+        max-height: fit-content;
     }
 
     .bio-header .project {
@@ -464,8 +471,8 @@ p {
     .end-text {
         flex: auto;
         width: auto;
-
         display: none;
+
         width: 100%;
         padding: 10px;
     }
@@ -589,6 +596,10 @@ p {
 
     .selected-project-title {
         display: none;
+    }
+
+    .one-liner {
+        visibility: hidden;
     }
 
 }

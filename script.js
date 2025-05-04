@@ -205,7 +205,7 @@ function updateSelectedProjectTitle() {
         // Check if it's bio-header or a regular list item
         if (selectedItem.classList.contains('bio-header')) {
             // For bio header, get text from project
-            const bioText = selectedItem.querySelector('.project').textContent;
+            const bioText = selectedItem.querySelector('.name').textContent;
             titleDisplay.textContent = bioText;
         } else if (selectedItem.classList.contains('list-item')) {
             // For regular list items, get text from project-name
