@@ -371,44 +371,6 @@ p {
         width: 100%;
     }
 
-    /* Same for the bio-header section  */
-    /* .bio-header .year-noshow,
-    .bio-header .category {
-        display: none;
-    } */
-
-    /* .bio-header {
-        width: 100%;
-        display: block;
-        cursor: pointer;
-    } */
-
-    /* .one-liner {
-        display: block;
-        padding-right: 15px;
-        padding-bottom: 20px;
-
-    } */
-
-
-    /* .bio-contact {
-        display: none;
-        position: absolute;
-        left: 0;
-        top: 0;
-        max-height: unset;
-    } */
-
-    /* .bio-contact.selected {
-        display: block;
-        margin: 10px;
-        max-height: fit-content;
-    } */
-
-    /* .bio-header .project {
-        width: 100%;
-    } */
-
     .bio-target {
         display: none;
     }
