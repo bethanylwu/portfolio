@@ -1,5 +1,6 @@
 // Course and session toggle functionality
 document.addEventListener('DOMContentLoaded', function () {
+
     // Get all course elements
     const courses = document.querySelectorAll('.course');
 
@@ -29,14 +30,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const sessions = document.querySelectorAll('.sessions li');
     const iframes = document.querySelectorAll('.blog-iframe');
 
-    // Hide all iframes initially
+    // Hide all iframes initially and show preload as default
     iframes.forEach(iframe => {
-        iframe.style.display = 'none';
-        const iframeElement = iframe.querySelector('iframe');
-        if (iframeElement) {
-            iframeElement.style.display = 'none';
-        }
+        iframe.classList.add('hidden');
     });
+
+    // Show preload iframe by default
+    const preloadIframe = document.querySelector('.blog-iframe[data-post-id="preload"]');
+    if (preloadIframe) {
+        preloadIframe.classList.remove('hidden');
+        preloadIframe.classList.add('visible');
+    }
 
     // Add click event listeners to session links
     sessions.forEach(session => {
@@ -46,32 +50,35 @@ document.addEventListener('DOMContentLoaded', function () {
             sessionLink.addEventListener('click', function (e) {
                 e.preventDefault(); // Prevent default link behavior
 
+                // Check if this session is already active
+                const isCurrentlyActive = session.classList.contains('active');
+
                 // Remove active class from all sessions
                 sessions.forEach(s => s.classList.remove('active'));
 
-                // Add active class to clicked session
-                session.classList.add('active');
-
                 // Hide all iframes
                 iframes.forEach(iframe => {
-                    iframe.style.display = 'none';
-                    const iframeElement = iframe.querySelector('iframe');
-                    if (iframeElement) {
-                        iframeElement.style.display = 'none';
-                    }
+                    iframe.classList.add('hidden');
+                    iframe.classList.remove('visible');
                 });
 
-                // Find and display the corresponding iframe
-                const targetIframe = document.querySelector(`.blog-iframe[data-post-id="${session.id}"]`);
+                // If the clicked session wasn't active, make it active and show its iframe
+                if (!isCurrentlyActive) {
+                    session.classList.add('active');
 
-                if (targetIframe) {
-                    targetIframe.style.display = 'block';
+                    // Find and display the corresponding iframe
+                    const targetIframe = document.querySelector(`.blog-iframe[data-post-id="${session.id}"]`);
 
-                    const iframe = targetIframe.querySelector('iframe');
-                    if (iframe) {
-                        iframe.style.display = 'block';
-                        iframe.style.width = '100%';
-                        iframe.style.height = '100%';
+                    if (targetIframe) {
+                        targetIframe.classList.remove('hidden');
+                        targetIframe.classList.add('visible');
+                    }
+                } else {
+                    // If no sessions are active, show the preload iframe
+                    const preloadIframe = document.querySelector('.blog-iframe[data-post-id="preload"]');
+                    if (preloadIframe) {
+                        preloadIframe.classList.remove('hidden');
+                        preloadIframe.classList.add('visible');
                     }
                 }
             });
