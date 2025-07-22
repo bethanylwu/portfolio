@@ -35,9 +35,50 @@
     float: left;
     width: 30%;
     height: 50%;
-    background-color: lightblue;
+    /* background-color: lightblue; */
 }
 
-.blogsidebar-container h1 {
-    background-color: lightblue;
+.blogsidebar-container h1,
+.blogsidebar-container a {
+    margin-left: 10px;
+    /* background-color: lightblue; */
+}
+
+ul {
+    list-style-type: none;
+    margin-left: 10px;
+}
+
+/* Hide all sessions by default */
+.sessions {
+    display: none;
+}
+
+/* Show sessions when course is active */
+.course.active .sessions {
+    display: block;
+}
+
+/* Visual feedback for active course links */
+.course.active>a,
+#fall-2025 a.active {
+    font-weight: bold;
+    color: rgb(255, 208, 0);
+}
+
+/* Add some spacing for sessions */
+.sessions {
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.sessions li {
+    margin-bottom: 2px;
+}
+
+/* Hover effects for course links */
+.course>a:hover,
+#fall-2025 a:hover {
+    color: rgb(255, 208, 0);
+    cursor: pointer;
 }
