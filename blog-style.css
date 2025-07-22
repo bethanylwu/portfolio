@@ -32,6 +32,7 @@ main ol {
     list-style-type: decimal;
     margin-left: 20px;
     padding-left: 20px;
+    color: rgb(110, 108, 108);
 }
 
 main li {
@@ -61,29 +62,37 @@ main li {
     /* min-height: 600px;
     position: relative; */
     /* background-color: pink; */
-    overflow-y: scroll;
 }
 
 .blogcontent-container h1 {
     background-color: pink;
 }
 
+.image-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px;
+    max-width: 100%;
+}
+
+.image-cluster img {
+    flex: 1;
+    min-width: 200px;
+    max-width: 75%;
+    height: auto;
+    object-fit: cover;
+}
+
 .blog-iframe {
-    width: 95%;
+    width: 100%;
     height: 100%;
     /* Set a specific height */
     border: none;
-    /* margin-bottom: 20px;
-    position: relative; */
+    margin-bottom: 20px;
+    position: relative;
 }
 
-.blog-iframe iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-    /* Ensure iframe is block-level */
-}
 
 .blogsidebar-container {
     float: left;
@@ -151,4 +160,13 @@ main li {
 .sessions li a:hover {
     color: rgb(255, 208, 0);
     cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+
+    .blogcontent-container,
+    .blogsidebar-container {
+        display: none;
+    }
 }

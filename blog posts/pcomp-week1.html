@@ -26,50 +26,120 @@
     <main>
         <section>
             <!-- section name -->
-            <h3>lab activity: setup arduino on breadboard</h3>
+            <h3>lab activity: setup arduino on breadboard &amp; other components</h3>
             <!-- section body -->
-            <p>Starting off nice and easy by powering an LED on a breadboard with an arduino.
-                <br />
-                Once the LED was set, I introduced a switch to the breadboard and then duplicated the configurations to
-                control the LED with the switch and resistor.
-                <br />
-                <br />
-                Question: If the two LEDs and switches are wired in series, is the second resistor necessary?
+            <p>Starting off nice and easy by powering an LED on a breadboard with the arduino.
+            <div class="image-cluster">
+                <img src="pcomp-media/week1/IMG_7887.jpeg" alt="breadboard with arduino powering a blue LED">
+            </div>
+            Once the LED was set, I introduced a switch to the breadboard and then duplicated the configurations to
+            control the LED with the switch and resistor.
+            <div class="image-cluster">
+                <img src="pcomp-media/week1/IMG_7888.gif"
+                    alt="breadboard with arduino powering a blue LED with a switch and resistor">
+                <img src="pcomp-media/week1/IMG_7890.gif"
+                    alt="breadboard with arduino powering a blue LED with a switch and resistor">
+            </div>
+            <strong>Question:</strong> If two LEDs and a switch are wired in series, is the second resistor
+            necessary?
+            <br />
+            <div class="image-cluster">
+                <img src="pcomp-media/week1/IMG_7899.gif"
+                    alt="two LEDs in series with a switch on a breadboard powered by an arduino">
+            </div>
+            <strong>Observation:</strong>After playing with different colored LEDs and discussions with residents at
+            pcomp lab, we discovered that different colored LEDs have different levels of resistance
+            - red &lt; yellow &lt; green &lt; blue.
+            <br />
+            I think this might be due to two reasons: The physicality of lightwaves, and the make up of the human
+            eye. Physically, red colored light has longer wavelengths and require less energy to to be emitted,
+            therefore the red LEDs have less resistance? Perceptually, the human eye has different sensitivities
+            to different colors of light, so perhaps we see red light more easily than blue light?
+            <br />
+            <div class="image-cluster">
+                <img src="pcomp-media/week1/IMG_7944.gif"
+                    alt="Red LED powered by a 9V battery on a breadboard, controlled by a potentiometer">
+            </div>
+            Another exercise I enjoyed doing was setting up the <em>potentiometer</em>. While it is not very visible
+            in the video - The potentiometer works as a dimmer switch for the LED, controlling the brightness by
+            rotating the knob.
             </p>
         </section>
 
         <section>
             <!-- section name -->
-            <h3>Key Topics</h3>
+            <h3>creative output: switch exercise, part 1</h3>
             <!-- section body -->
-            <ul>
-                <li>Introduction to sensors and actuators</li>
-                <li>Basic electronics concepts</li>
-                <li>Programming microcontrollers</li>
-            </ul>
+            <p>This week's assignment is to build a simple mechanical switch with things that can be found around the
+                shop. I approached this assignment by breaking down the circuit and scaling it up as we go.
+            </p>
+            <ol>
+                <li>Starting with the single blue LED circuit, I swapped out the switch for two jumper wires to serve as
+                    my custom switch connection points.</li>
+                <div class="image-cluster">
+                    <img src="pcomp-media/week1/test.gif"
+                        alt="breadboard with arduino powering a blue LED with two jumper wires used as a switch">
+                </div>
+                <li>Testing by connecting the headers to make sure the circuit still worked.</li>
+                <li>To make it a little more interesting, I added &quot;finger sleeves&quot; to the jumper wires to
+                    change the interaction behavior. Here is the worlds quietest clap lighting up an LED.
+                    <br />
+                    <strong>Observation:</strong> The connection is a little inconsistent as it requires a substantial
+                    amount of pressure to close the circuit.
+                </li>
+                <div class="image-cluster">
+                    <img src="pcomp-media/week1/test-with-gear.gif"
+                        alt="breadboard with arduino powering a blue LED with a jumper wires connected to finger sleeves as a switch">
+                </div>
+            </ol>
         </section>
 
         <section>
             <!-- section name -->
-            <h3>Resources</h3>
+            <h3>creative output: switch exercise, part 2</h3>
             <!-- section body -->
-            <ul>
-                <li><a href="https://www.arduino.cc/">Arduino Official Website</a></li>
-                <li><a href="https://www.sparkfun.com/">SparkFun Electronics</a></li>
-                <li><a href="https://www.adafruit.com/">Adafruit Industries</a></li>
-            </ul>
-        </section>
-
-        <section>
-            <h3>Assignments</h3>
-            <p>Complete the following tasks by next week:</p>
+            <p> I wasnt completely satisfied with this initial switch, so I created a different one. Inspired by the
+                table top game &quot;<em>Operations</em>&quot;, but in reverse. Follow the conductive path to keep the
+                light on.</p>
             <ol>
-                <li>Set up your Arduino environment.</li>
-                <li>Create a simple circuit with an LED and a button.</li>
-                <li>Write a program to control the LED based on button input.</li>
+                <li>I started off with the same wiring schematic as the &quot;Quietest Clap&quot;, and connected one
+                    wire for the switch to a labyrinth pattern I found on the Junk Shelf. I covered the pattern with
+                    copper tape to create the tracable conductive path.</li>
+                <li>The other wire was then threaded through a Bic pen for a more realistic tracing experience. I
+                    stripped about 1/2 inch of insulation from the wire exposed end at the tip of the pen, and balled it
+                    up making sure it would be larger than the opening to prevent the wire from slipping back into the
+                    pen barrel. The larger ball shape also increases the contact surface area when tracing the pattern.
+                </li>
+                <div class="image-cluster">
+                    <img src="pcomp-media/week1/IMG_7955.gif"
+                        alt="A breadboard with a red LED connected to a wire and the ground connected to a conductive labyrinth pattern. The wire to the LED is used to trace the labyrinth pattern and turn on the LED.">
+                </div>
+                <li>After testing and ensuring the circuit worked, I secured the components into a box, also found on
+                    the Junk Shelf. The LED was threaded through a hole in the lid and the labyrinth pattern rested
+                    atop the box, leaving a cutout for the LED to shine through.</li>
+                <li>The breadboard rested in the box, and a cutout was made on the side of the box so that the wire
+                    connecting to the arduino could be fed into the box. Unfortunately, this box was too small for the
+                    full size breadboard so the cutout was extra wide as the breadboard needed to stick out of the box.
+                    <br />
+                </li>
+                <div class="image-cluster">
+                    <img src="pcomp-media/week1/IMG_7958.gif"
+                        alt="A box with a labyrinth pattern on top and a red LED shining through, which can be turned on when a pen traces the labyrinth pattern. ">
+                </div>
             </ol>
-        </section>
+            <p>
+                <strong>Observation 1:</strong> When tracing the labyrinth pattern, towards the end of the path -
+                further from the LED connection point - the LED would flicker and dim. <strong>Note:</strong> In
+                class, Yeseul mentioned that this circuit is essentially what a potentiometer does, so
+                unintentionally, I have made a dimmer.
+                <br />
+                <strong>Observation 2:</strong> The more I trace, the harder I have to press down to keep the
+                circuit closed. At certain points, the LED would turn off completely. <strong>Note:</strong> I
+                believe this is due to the fact that the copper tape can become oxidized over time, which affects
+                its conductivity.
+            </p>
 
+        </section>
     </main>
 </body>
 
