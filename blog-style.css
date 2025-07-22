@@ -5,6 +5,40 @@
     background-color: none;
 }
 
+h1 {
+    font-size: 20px;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+main {
+    margin: 20px;
+}
+
+main section {
+    margin-bottom: 20px;
+}
+
+main ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-left: 20px;
+}
+
+main ol {
+    list-style-type: decimal;
+    margin-left: 20px;
+    padding-left: 20px;
+}
+
+main li {
+    margin-bottom: 5px;
+}
+
+
 .header:hover {
     background-color: rgb(245, 241, 241);
 }
@@ -24,11 +58,18 @@
     float: left;
     width: 70%;
     height: 100%;
-    background-color: pink;
+    /* background-color: pink; */
+    overflow: scroll;
 }
 
 .blogcontent-container h1 {
     background-color: pink;
+}
+
+.blog-iframe {
+    width: 95%;
+    height: 100%;
+    border: none;
 }
 
 .blogsidebar-container {
@@ -36,15 +77,17 @@
     width: 30%;
     height: 50%;
     /* background-color: lightblue; */
+    overflow: scroll;
 }
 
 .blogsidebar-container h1,
 .blogsidebar-container a {
+    font-size: 14px;
     margin-left: 10px;
     /* background-color: lightblue; */
 }
 
-ul {
+.blogsidebar-container ul {
     list-style-type: none;
     margin-left: 10px;
 }
