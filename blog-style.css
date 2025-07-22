@@ -1,4 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: none;
+}
+
+.header:hover {
+    background-color: rgb(245, 241, 241);
+}
+
+.header:hover .header-cover {
+    color: rgb(255, 208, 0);
+}
+
+.page {
+    position: static;
+    margin: 0 auto;
+    width: 90%;
+}
+
+
 .blogcontent-container {
     float: left;
+    width: 70%;
+    height: 100%;
+    background-color: pink;
+}
 
+.blogcontent-container h1 {
+    background-color: pink;
+}
+
+.blogsidebar-container {
+    float: left;
+    width: 30%;
+    height: 50%;
+    background-color: lightblue;
+}
+
+.blogsidebar-container h1 {
+    background-color: lightblue;
 }
