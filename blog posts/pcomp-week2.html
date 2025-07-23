@@ -26,38 +26,44 @@
     <main>
         <section>
             <!-- section name -->
-            <h3>lab activity: setup arduino on breadboard</h3>
+            <h3>This week's lab covered quite a few subjects:</h3>
             <!-- section body -->
-            <p>Starting off nice and easy by powering an LED on a breadboard with an arduino.
-                <br />
-                Once the LED was set, I introduced a switch to the breadboard and then duplicated the configurations to
-                control the LED with the switch and resistor.
-                <br />
-                <br />
-                Question: If the two LEDs and switches are wired in series, is the second resistor necessary?
+            <ol>
+                <li>How to connect digital input and output</li>
+                <li>How to utilize code to alter input and output</li>
+                <li>Connecting analog sensors with a microcontroller to extract sensor range with code</li>
+                <li>Different ways to use sensors and produce interesting output</li>
+            </ol>
+        </section>
+
+        <section>
+            <!-- section name -->
+            <h3>lab activity 1: programming analog switches</h3>
+            <!-- section body -->
+            <p>The first exercise was to wire up two LEDs to a switch and program the switch to alternate the LED states
+                when the switch is on or off.</p>
+            <div class="image-cluster"></div>
+            <p>In effort to understand the code, I changed the LED output to both turn on
+                when the switch is pressed</p>
+            <div class="image-cluster"></div>
+            <p><strong>Question:</strong> Why does the digital input wire go to the ground side of the switch
+                rather than the power side? If the circuit is effectively a loop, wouldn't the placement of the wire
+                affect the timing of reading rather than the overall functionality of the switch?</p>
+        </section>
+
+        <section>
+            <!-- section name -->
+            <h3>lab activity 2: audio output</h3>
+            <!-- section body -->
+            <p>My first attempt was to simply remove the yellow LED and plug the speaker into the respective power and
+                ground connection points and alter the code. But it did not work. Here is what I did to troubleshoot.
+            <ol>
+                <li>I opened an example program in the Arduino IDE and confirmed that the circuit was not the issue as
+                    the speaker began to produce noise.</li>
+                <li>The next step was to troubleshoot the code. We I kept the LED to have a visual indicator of switch
+                    reaction.</li>
+            </ol>
             </p>
-        </section>
-
-        <section>
-            <!-- section name -->
-            <h3>Key Topics</h3>
-            <!-- section body -->
-            <ul>
-                <li>Introduction to sensors and actuators</li>
-                <li>Basic electronics concepts</li>
-                <li>Programming microcontrollers</li>
-            </ul>
-        </section>
-
-        <section>
-            <!-- section name -->
-            <h3>Resources</h3>
-            <!-- section body -->
-            <ul>
-                <li><a href="https://www.arduino.cc/">Arduino Official Website</a></li>
-                <li><a href="https://www.sparkfun.com/">SparkFun Electronics</a></li>
-                <li><a href="https://www.adafruit.com/">Adafruit Industries</a></li>
-            </ul>
         </section>
 
         <section>
