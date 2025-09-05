@@ -30,17 +30,55 @@ document.addEventListener('DOMContentLoaded', function () {
     const sessions = document.querySelectorAll('.sessions li');
     const iframes = document.querySelectorAll('.blog-iframe');
 
-    // Hide all iframes initially and show preload as default
+    // Hide all iframes initially
     iframes.forEach(iframe => {
         iframe.classList.add('hidden');
     });
 
-    // Show preload iframe by default
-    const preloadIframe = document.querySelector('.blog-iframe[data-post-id="preload"]');
-    if (preloadIframe) {
-        preloadIframe.classList.remove('hidden');
-        preloadIframe.classList.add('visible');
+    // Function to show a specific post by ID
+    function showPost(postId) {
+        // Remove active class from all sessions
+        sessions.forEach(s => s.classList.remove('active'));
+
+        // Hide all iframes
+        iframes.forEach(iframe => {
+            iframe.classList.add('hidden');
+            iframe.classList.remove('visible');
+        });
+
+        if (postId && postId !== 'preload') {
+            // Find the session with matching ID and make it active
+            const targetSession = document.getElementById(postId);
+            if (targetSession) {
+                targetSession.classList.add('active');
+
+                // Also expand the parent course
+                const parentCourse = targetSession.closest('.course');
+                if (parentCourse) {
+                    parentCourse.classList.add('active');
+                }
+            }
+
+            // Find and display the corresponding iframe
+            const targetIframe = document.querySelector(`.blog-iframe[data-post-id="${postId}"]`);
+            if (targetIframe) {
+                targetIframe.classList.remove('hidden');
+                targetIframe.classList.add('visible');
+                return;
+            }
+        }
+
+        // If no valid post ID or post not found, show preload
+        const preloadIframe = document.querySelector('.blog-iframe[data-post-id="preload"]');
+        if (preloadIframe) {
+            preloadIframe.classList.remove('hidden');
+            preloadIframe.classList.add('visible');
+        }
     }
+
+    // Check for hash in URL on page load
+    const initialHash = window.location.hash.substring(1); // Remove the # symbol
+    showPost(initialHash || 'preload');
 
     // Add click event listeners to session links
     sessions.forEach(session => {
@@ -53,35 +91,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Check if this session is already active
                 const isCurrentlyActive = session.classList.contains('active');
 
-                // Remove active class from all sessions
-                sessions.forEach(s => s.classList.remove('active'));
-
-                // Hide all iframes
-                iframes.forEach(iframe => {
-                    iframe.classList.add('hidden');
-                    iframe.classList.remove('visible');
-                });
-
-                // If the clicked session wasn't active, make it active and show its iframe
                 if (!isCurrentlyActive) {
-                    session.classList.add('active');
-
-                    // Find and display the corresponding iframe
-                    const targetIframe = document.querySelector(`.blog-iframe[data-post-id="${session.id}"]`);
-
-                    if (targetIframe) {
-                        targetIframe.classList.remove('hidden');
-                        targetIframe.classList.add('visible');
-                    }
+                    // Update URL hash
+                    window.location.hash = session.id;
+                    // Show the post
+                    showPost(session.id);
                 } else {
-                    // If no sessions are active, show the preload iframe
-                    const preloadIframe = document.querySelector('.blog-iframe[data-post-id="preload"]');
-                    if (preloadIframe) {
-                        preloadIframe.classList.remove('hidden');
-                        preloadIframe.classList.add('visible');
-                    }
+                    // If clicking active session, go back to preload
+                    window.location.hash = '';
+                    showPost('preload');
                 }
             });
         }
+    });
+
+    // Listen for hash changes (back/forward navigation)
+    window.addEventListener('hashchange', function () {
+        const hash = window.location.hash.substring(1);
+        showPost(hash || 'preload');
     });
 });
