@@ -15,12 +15,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Check if this course is already active
                 const isCurrentlyActive = course.classList.contains('active');
 
-                // Remove active class from all courses (hide all sessions)
+                // Remove active class from all courses and sessions
                 courses.forEach(c => c.classList.remove('active'));
+                sessions.forEach(s => s.classList.remove('active'));
 
-                // If the clicked course wasn't active, make it active
+                // If the clicked course wasn't active, make it active and show course content
                 if (!isCurrentlyActive) {
                     course.classList.add('active');
+
+                    // Get course identifier from the text content or create one
+                    const courseText = courseLink.textContent.trim();
+                    const courseId = getCourseId(courseText);
+
+                    // Try to load course overview page
+                    showCourseOrPost(courseId, true);
+                } else {
+                    // If clicking active course, go back to preload
+                    showCourseOrPost('preload', false);
                 }
             });
         }
@@ -28,23 +39,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Session click functionality to display corresponding iframe
     const sessions = document.querySelectorAll('.sessions li');
-    const iframes = document.querySelectorAll('.blog-iframe');
+    const blogIframe = document.getElementById('blog-iframe');
 
-    // Hide all iframes initially
-    iframes.forEach(iframe => {
-        iframe.classList.add('hidden');
-    });
+    // Helper function to convert course name to course ID
+    function getCourseId(courseText) {
+        const courseMap = {
+            'Physical Computing': 'pcomp',
+            'Intro to Computational Media (ICM)': 'icm',
+            'Hypercinema': 'hypercinema',
+            'Cabinets of Wonder': 'cow',
+            'Soft Robotics': 'soft-robotics',
+            'Code Your Way': 'code-your-way',
+            'Haptics': 'haptics',
+            'Project Development Studio': 'pdev',
+            'Medium of Memory': 'mom',
+            'Shared Minds': 'shared-minds',
+            'Time': 'time',
+            'On Becoming': 'on-becoming'
+        };
+        return courseMap[courseText] || courseText.toLowerCase().replace(/\s+/g, '-');
+    }
 
-    // Function to show a specific post by ID
+    // Function to show course overview or specific post
+    function showCourseOrPost(id, isCourse = false) {
+        if (isCourse) {
+            // Try to load course overview page first
+            const coursePath = `blog-posts/courses/${id}.html`;
+            blogIframe.src = coursePath;
+            blogIframe.title = `Course Overview: ${id}`;
+
+            // If course overview doesn't exist, you could fallback to preload
+            blogIframe.onerror = function () {
+                blogIframe.src = 'blog-posts/preload.html';
+                blogIframe.title = 'Select a blog post';
+            };
+        } else if (id && id !== 'preload') {
+            // Load specific session/post
+            blogIframe.src = `blog-posts/${id}.html`;
+            blogIframe.title = `Blog Post: ${id}`;
+        } else {
+            // Load preload page
+            blogIframe.src = 'blog-posts/preload.html';
+            blogIframe.title = 'Select a blog post';
+        }
+    }
+
+    // Function to show a specific post by ID (for sessions)
     function showPost(postId) {
         // Remove active class from all sessions
         sessions.forEach(s => s.classList.remove('active'));
-
-        // Hide all iframes
-        iframes.forEach(iframe => {
-            iframe.classList.add('hidden');
-            iframe.classList.remove('visible');
-        });
 
         if (postId && postId !== 'preload') {
             // Find the session with matching ID and make it active
@@ -57,23 +100,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (parentCourse) {
                     parentCourse.classList.add('active');
                 }
-            }
 
-            // Find and display the corresponding iframe
-            const targetIframe = document.querySelector(`.blog-iframe[data-post-id="${postId}"]`);
-            if (targetIframe) {
-                targetIframe.classList.remove('hidden');
-                targetIframe.classList.add('visible');
+                // Update iframe source
+                showCourseOrPost(postId, false);
                 return;
             }
         }
 
         // If no valid post ID or post not found, show preload
-        const preloadIframe = document.querySelector('.blog-iframe[data-post-id="preload"]');
-        if (preloadIframe) {
-            preloadIframe.classList.remove('hidden');
-            preloadIframe.classList.add('visible');
-        }
+        showCourseOrPost('preload', false);
     }
 
     // Check for hash in URL on page load
