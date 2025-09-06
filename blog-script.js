@@ -27,10 +27,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     const courseText = courseLink.textContent.trim();
                     const courseId = getCourseId(courseText);
 
+                    // Update URL hash for course
+                    window.location.hash = courseId;
+
                     // Try to load course overview page
                     showCourseOrPost(courseId, true);
                 } else {
                     // If clicking active course, go back to preload
+                    window.location.hash = '';
                     showCourseOrPost('preload', false);
                 }
             });
@@ -88,9 +92,10 @@ document.addEventListener('DOMContentLoaded', function () {
     function showPost(postId) {
         // Remove active class from all sessions
         sessions.forEach(s => s.classList.remove('active'));
+        courses.forEach(c => c.classList.remove('active'));
 
         if (postId && postId !== 'preload') {
-            // Find the session with matching ID and make it active
+            // First check if it's a session ID
             const targetSession = document.getElementById(postId);
             if (targetSession) {
                 targetSession.classList.add('active');
@@ -103,6 +108,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Update iframe source
                 showCourseOrPost(postId, false);
+                return;
+            }
+
+            // If not a session, check if it's a course ID
+            const courseIds = {
+                'pcomp': 'Physical Computing',
+                'icm': 'Intro to Computational Media (ICM)',
+                'hypercinema': 'Hypercinema',
+                'cow': 'Cabinets of Wonder',
+                'soft-robotics': 'Soft Robotics',
+                'code-your-way': 'Code Your Way',
+                'haptics': 'Haptics',
+                'pdev': 'Project Development Studio',
+                'mom': 'Medium of Memory',
+                'shared-minds': 'Shared Minds',
+                'time': 'Time',
+                'on-becoming': 'On Becoming'
+            };
+
+            if (courseIds[postId]) {
+                // Find and activate the course
+                courses.forEach(course => {
+                    const courseLink = course.querySelector('a');
+                    if (courseLink && courseLink.textContent.trim() === courseIds[postId]) {
+                        course.classList.add('active');
+                    }
+                });
+
+                // Update iframe source for course
+                showCourseOrPost(postId, true);
                 return;
             }
         }
