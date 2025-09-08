@@ -51,6 +51,13 @@ p {
     color: rgb(110, 108, 108);
 }
 
+div:has(> blockquote) {
+    background-color: rgb(110, 108, 108);
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 5px;
+}
+
 
 .page {
     position: fixed;
